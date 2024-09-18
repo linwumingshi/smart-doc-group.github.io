@@ -24,7 +24,7 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ github.repository == 'smart-doc-group/smart-doc-group.github.io' && github.event.pull_request.changed_files > 0 }} # Run this job only if there are file changes
+    if: ${{ github.event.pull_request.changed_files > 0 }} # Run this job only if there are file changes
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
