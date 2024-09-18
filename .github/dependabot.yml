@@ -11,6 +11,6 @@ updates:
   - package-ecosystem: "pnpm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     labels:
       - "dependencies"
