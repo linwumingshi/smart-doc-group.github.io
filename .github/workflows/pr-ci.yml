@@ -18,8 +18,9 @@ permissions:
 
 jobs:
   build:
-    if: ${{  github.repository == 'smart-doc-group/smart-doc-group.github.io'
-      && github.event.pull_request.changed_files > 0 }}
+    # TEMP: repo guard removed to test PR CI in the fork.
+    # Restore before opening the upstream PR:
+    # if: ${{ github.repository == 'smart-doc-group/smart-doc-group.github.io' && github.event.pull_request.changed_files > 0 }}
     runs-on: ubuntu-latest
     concurrency:
       group: pr-build-${{ github.event.pull_request.number }}
@@ -34,9 +35,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
       - name: Build with VitePress
         run: pnpm docs:build
